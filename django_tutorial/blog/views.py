@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Post
 
 # Create your views here.
 """
@@ -8,26 +9,11 @@ def home(request):
     # ise HttpResponse to desplay HTML webpages
 """
 
-posts = [
-    {
-        'author': 'parham',
-        'title': 'Blog post',
-        'content': 'First Post',
-        'date_posted': 'September 10'
-    },
-    {
-        'author': 'jane doe',
-        'title': 'Blog post 2',
-        'content': 'First Post jane',
-        'date_posted': 'September 11'
-    }
-]
-
 
 # homepage using templates
 def home(request):
     context = {
-        'posts': posts
+        'posts': Post.objects.all()
     }
     return render(request, 'blog/home.html', context)
 
