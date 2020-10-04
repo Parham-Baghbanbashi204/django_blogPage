@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),  # one per app
     # when people navigate to the blog url it then sends them to the blog app urls.py
+    path('regester/', user_views.register, name="regester"),
 
 ]

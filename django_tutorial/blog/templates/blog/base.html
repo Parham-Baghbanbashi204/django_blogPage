@@ -46,6 +46,15 @@
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
+          {% if messages %}
+            {%for message in messages%}
+              <!-- Becuse both django and bootsrtap use the same types of tags we 
+              can use alert-{{ message.tags }} to pick what type of alert bootstrap displays -->
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
