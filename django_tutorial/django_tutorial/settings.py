@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -123,6 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Media Root = Full path to a directory which hosts upoloaded files --> tells django where all the files(video,image,audio etc) are
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/meida/'
 
 #crispy forms settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

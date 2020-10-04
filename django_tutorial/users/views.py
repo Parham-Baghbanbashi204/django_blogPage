@@ -7,7 +7,8 @@ from django.contrib import messages
 from .forms import *
 # login requred decorator(used to limit views to logedin people)
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+
+
 
 def register(request):
     #checks for post request
