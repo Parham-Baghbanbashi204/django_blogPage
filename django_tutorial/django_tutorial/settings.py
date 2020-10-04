@@ -126,3 +126,9 @@ STATIC_URL = '/static/'
 
 #crispy forms settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#login rederct path
+LOGIN_REDIRECT_URL = 'blog-home'
+
+#login url --> tells django this is where we have our login page
+LOGIN_URL = 'login'
