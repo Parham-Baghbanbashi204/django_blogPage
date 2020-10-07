@@ -8,10 +8,13 @@ class Profile(models.Model):
     # cascade = if user is deleted delete the profile, works only one way
     # becuse we have made a one to one relationship we have accsess to the user fields, and we can now add fields to user
     # through profile
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE) 
     # allows us to upload images
-    profile_image = models.ImageField(default='defult.jpg', upload_to=f'images/profile_pics')
+    # this line allows us to create custom filederedtorys for each instance of a inhereted model
+    def make_user_dir(instance, filename):
+        return f'images/profile_pics/{instance.user.username}/{filename}'
+    # this is what lets us acctual upload the image    
+    profile_image = models.ImageField(default='defult.jpg', upload_to=make_user_dir)
 
     #dudner str mentod 
     def __str__(self):
