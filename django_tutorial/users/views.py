@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 #flash messages
 from django.contrib import messages
-#custom form
+#custom forms
 from .forms import *
 # login requred decorator(used to limit views to logedin people)
 from django.contrib.auth.decorators import login_required
@@ -34,7 +34,29 @@ def register(request):
 # diffrent with class based views
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        #imports our profile forms, and sets usere info to the feilds
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, 
+                                   request.FILES, 
+                                   instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            
+            p_form.save()
+            #send a flash message confirming that our data is valid
+            messages.success(request, f'Your account has been Updated')
+            # redirects us back to profile becuse of the post, get redierct pattern(reloading the page causes a post request) 
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form':u_form, 
+        'p_form' : p_form
+    }
+    return render(request, 'users/profile.html', context)
 
 """
 types of flash messages for django
