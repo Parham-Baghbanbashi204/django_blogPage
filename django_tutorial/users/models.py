@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image 
+import os
 # Create your models here.
 
 class Profile(models.Model):
@@ -25,17 +26,28 @@ class Profile(models.Model):
 
     # we can use Pillow to resize images by overideing the save method of the model
     def save(self, *args, **kwargs):
+        # removes old profile pics
+        try:
+            profile = Profile.objects.get(id=self.id)
+            if profile.profile_image != self.profile_image:
+                profile.profile_image.delete(save=False)
+                #os.remove(profile.profile_image.path)
+        except: pass
         # uses parent instances save method to save profile
         super().save( *args, **kwargs)
 
+
         # opens image for profile instance
         img = Image.open(self.profile_image.path)
+
 
         # resizes our image
         if img.height > 300 or img.width > 300:
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.profile_image.path)
+        else:
+            img.save(self.profile_image)
 
 
       
