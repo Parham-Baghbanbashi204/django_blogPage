@@ -38,10 +38,12 @@
             <div class="navbar-nav">
               <!--we can use is_authenticated to chek if a user is loged in and display a diffrent page/links for login logout-->
               {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                 <!--when user is logedin we can display profile-->
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
               {% else %}
+                
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
               {% endif %}
