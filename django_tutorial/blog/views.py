@@ -38,6 +38,9 @@ class PostListView(ListView):
     # this attribute allows the backent to determine which atribute to order the posts by
     ordering = ['-date_posted']# the minus sign orders the dates by newest to oldest
 
+    # pagination
+    # paginate_by = 5
+
 
 # keeping to the conventions
 # looking at a single post
