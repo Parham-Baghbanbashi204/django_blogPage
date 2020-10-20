@@ -8,6 +8,7 @@ DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
+
 """
 def home(request):
     return HttpResponse('<h1>Blog Home</h1>')  # displays Blog home can be used to display HTML homepage
