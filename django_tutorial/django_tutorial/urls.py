@@ -39,6 +39,12 @@ urlpatterns = [
     #will not touch the templates 
     # to give the login and logout views the templates that we want to use we can pass the template.html through the as_view() function
 
+    #Password Reset view
+    path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
+
+    #Password Reset Complete -- Notifys user to check email
+    path('password-reset/done', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
+
     #link to out profile page
     path('profile/', user_views.profile, name='profile')
 
