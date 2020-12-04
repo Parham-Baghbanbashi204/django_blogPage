@@ -19,12 +19,30 @@ def home(request):
 
 # Function based view
 # homepage using templates
-def home(request):
+"""def home(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request, 'blog/home.html', context)
+    return render(request, 'blog/home.html', context)"""
+    
+"""    def create_post_order(self):
+        posts = []
+        counter = 1
+        for post in Post.objects.all():
+            if counter % 5 == 0:
+                if post.is_featured == True:
+                    posts.append(post)
+            else:
+                posts.append(post)
+            
 
+            counter += 1
+        return posts
+
+
+    
+    print(Post.objects.all())
+"""
 # class based views
 # these class based views allow us to use djangos defult views and modify them
 class PostListView(ListView):
@@ -33,8 +51,16 @@ class PostListView(ListView):
     model = Post
     # template it uses
     template_name = 'blog/home.html' # django template nameing convention: <app>/<model>_<viewtype>.html
+
+
     # contex
-    context_object_name = 'posts'
+    #context_object_name = 'posts'
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        #context['pk_order'] = self.create_post_order()        
+
+        return context
     # to allow us to display the newest post first we need to change the order of our qurery
     # this attribute allows the backent to determine which atribute to order the posts by
     ordering = ['-date_posted']# the minus sign orders the dates by newest to oldest

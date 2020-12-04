@@ -13,6 +13,8 @@ class Post(models.Model):
     # forignkey creates working realationship between user and post tables in relational database
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    is_featured = models.BooleanField(default=False)
+
     # dunder str method --> displays information when we print the class
     def __str__(self):
     	return self.title

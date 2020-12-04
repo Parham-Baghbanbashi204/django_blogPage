@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     #crispy_forms application
     'crispy_forms',
     #django cleanup --> cleans up old image files
-    'django_cleanup',
+    #'django_cleanup',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
