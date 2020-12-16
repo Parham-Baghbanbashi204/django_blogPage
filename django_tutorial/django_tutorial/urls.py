@@ -42,8 +42,17 @@ urlpatterns = [
     #Password Reset view
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
 
-    #Password Reset Complete -- Notifys user to check email
+    #Password Reset Done -- Notifys user to check email
     path('password-reset/done', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
+
+    # reset confirm(security route)
+    path('password-reset-confirm/<uidb64>/<token>', 
+        auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), 
+        name='password_reset_confirm'),
+
+    #password Reset Complete(completed the password reset)
+    path('password-reset-complete', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
+
 
     #link to out profile page
     path('profile/', user_views.profile, name='profile')

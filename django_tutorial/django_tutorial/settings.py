@@ -139,3 +139,15 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 #login url --> tells django this is where we have our login page
 LOGIN_URL = 'login'
+
+''' used in production, for development i have commented this out
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOSTS = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('DJANGO_TUTORIAL_EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_TUTORIAL_EMAIL_PASS')
+'''
+#console backend(send email content to console insted of sending an acctual email)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
