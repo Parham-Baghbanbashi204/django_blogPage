@@ -42,6 +42,7 @@
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                 <!--when user is logedin we can display profile-->
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
               {% else %}
                 
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>

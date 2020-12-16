@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+7_h6z6%sh50(fx_s^g!qmqsg8%8&aa%7kjryqs%8cbgvvpi_v'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -140,14 +140,15 @@ LOGIN_REDIRECT_URL = 'blog-home'
 #login url --> tells django this is where we have our login page
 LOGIN_URL = 'login'
 
-''' used in production, for development i have commented this out
-# Email Settings
+'''
+# Email Settings(for production)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOSTS = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('DJANGO_TUTORIAL_EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_TUTORIAL_EMAIL_PASS')
+EMAIL_USE_TLS = True
 '''
+
 #console backend(send email content to console insted of sending an acctual email)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
