@@ -25,6 +25,7 @@ class Profile(models.Model):
         return f'{self.user.username}'
 
     # we can use Pillow to resize images by overideing the save method of the model
+    # never forget args and kwargs
     def save(self, *args, **kwargs):
         # removes old profile pics
         try:
